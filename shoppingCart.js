@@ -29,6 +29,13 @@ export function addToCart(id) {
   renderCart();
 }
 
+function removeFromCart(id) {
+  const exsistingItem = shoppingCart.find((entry) => entry.id === id);
+  if (exsistingItem == null) return;
+  shoppingCart = shoppingCart.filter((entry) => entry.id !== id);
+  renderCart();
+}
+
 function renderCart() {
   if (shoppingCart.length === 0) {
     hideCart();
