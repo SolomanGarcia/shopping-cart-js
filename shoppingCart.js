@@ -1,5 +1,6 @@
 import items from "./items.json";
 import formatCurrency from "./util/formatCurrency.js";
+import addGlobalEventListener from "./util/addGlobalEventListener.js";
 
 const cartButton = document.querySelector("[data-cart-button]");
 const cartItemsWrapper = document.querySelector("[data-cart-items-wrapper]");
@@ -12,6 +13,11 @@ const cartTotal = document.querySelector("[data-cart-total]");
 const cart = document.querySelector("[data-cart]");
 
 export function setupShoppingCart() {
+  addGlobalEventListener("click", "[data-remove-from-cart-button]", (e) => {
+    const id = parseInt(e.target.closest("[data-item]").dataset.itemId);
+    removeFromCart(id);
+  });
+
   renderCart();
 }
 
